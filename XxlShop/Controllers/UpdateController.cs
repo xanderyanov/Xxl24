@@ -42,7 +42,7 @@ namespace XxlShop.Controllers
                 //string fileName = model.FileName + fileInfo.Extension;
                 //string fileName = fileInfo.Name;
 
-                string fileName = now.ToString("yyyy-MM-dd-hh-mm-ss") + fileInfo.Extension;
+                string fileName = now.ToString("yyyy-MM-dd-HH-mm-ss") + fileInfo.Extension;
 
                 Console.WriteLine(fileInfo.Extension);
                 Console.WriteLine(fileName);
@@ -56,15 +56,15 @@ namespace XxlShop.Controllers
                 using (var stream = new FileStream(fileNameWithPath, FileMode.Create)) {
                     model.File.CopyTo(stream);
                 }
-                model.IsSuccess = true;
-                model.Message = "File upload successfully";
+                
 
-                //if (IsFileValid(model.File)) {
-
-                //} else {
-                //    model.IsSuccess = false;
-                //    model.Message = "Fuck you!";
-                //}
+                if (IsFileValid(model.File)) {
+                    model.IsSuccess = true;
+                    model.Message = "Успешно!";
+                } else {
+                    model.IsSuccess = false;
+                    model.Message = "Внимание, ошибка!";
+                }
 
                 Data.ImportCSV(fileName);
 

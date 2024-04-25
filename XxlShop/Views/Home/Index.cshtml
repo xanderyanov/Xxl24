@@ -1,2 +1,10 @@
-﻿<h4>Welcome to XxlShop24</h4>
+﻿@model List<Product>
+
+<h4>Welcome to XxlShop24</h4>
+
+<div class="row">
+    @foreach (var p in Model ?? Enumerable.Empty<Product>()) {
+        <partial name="ProductSummary" model="p" />
+    }
+</div>
 

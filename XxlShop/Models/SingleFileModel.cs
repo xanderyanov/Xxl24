@@ -5,7 +5,7 @@ namespace XxlShop.Models
     public class SingleFileModel : ResponseModel
     {
         //[Required(ErrorMessage = "Please enter file name")]
-        public string FileName { get; set; }
+        public string FileName { get; set; } = "file";
         
         [Required(ErrorMessage = "Please select file")]
         [DataType(DataType.Upload)]

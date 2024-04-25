@@ -106,6 +106,8 @@ namespace XxlShop.Domain
 
             List<Product> Tovars = new();
 
+            int i = 0;
+
             while (csv.Next()) {
                 // double.TryParse(csv["Discount"], out double Discount); - создана переменная, действие с ней, а потом присвоение внутри new Product значения переменной к полю (Discount = Discount)
                 // сейчас универсальная функция TryParseDouble() и ее вызов с обязательным параметром по умолчанию
@@ -183,11 +185,12 @@ namespace XxlShop.Domain
 
                 if (mod) {
                     productsCollection.ReplaceOne(new BsonDocument() { { "_id", tovar.Id } }, tovar, AlwaysUpsert);
+                    i++;
                 }
 
                 //Console.WriteLine($"Код1C: {csv["Code1C"]}, Наименование: {csv["Name"]}, Артикул: {csv["Article"]}, Цена: {csv["Price"]}");
-
             }
+            Console.WriteLine("Добавлено или обновлено " + i + "шт");
 
         }
 

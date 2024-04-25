@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using XxlShop.Domain;
+using XxlShop.Models;
 
 namespace XxlShop.Controllers
 {
@@ -7,8 +8,11 @@ namespace XxlShop.Controllers
     {
         public IActionResult Index()
         {
+            IEnumerable<Product> Products = Data.MainDomain.ExistingTovars;
 
-            return View();
+            List<Product> filteredProducts = Products.Where(x => x.FlagNew).ToList();
+
+            return View(filteredProducts);
         }
     }
 }
