@@ -4,10 +4,10 @@ namespace XxlShop.Models
 {
     public class SingleFileModel : ResponseModel
     {
-        [Required(ErrorMessage = "Please enter file name")]
+        //[Required(ErrorMessage = "Please enter file name")]
         public string FileName { get; set; }
+        
         [Required(ErrorMessage = "Please select file")]
-
         [DataType(DataType.Upload)]
         [MaxFileSize(5 * 1024 * 1024)]
         [AllowedExtensions(new string[] { ".jpg", ".png", ".csv" })]
