@@ -6,8 +6,15 @@ using System.Reflection;
 using XxlShop.Models;
 using XxlShop.Utils;
 
-namespace XxlShop.Domain
+namespace XxlShop
 {
+    public class Domain
+    {
+        public List<Product> ExistingTovars;
+
+        public List<string> Categories;
+    }
+
     public static class Data
     {
         public static IMongoDatabase DB;
@@ -36,6 +43,7 @@ namespace XxlShop.Domain
             //Каталог и все такое
             productsCollection = DB.GetCollection<Product>("products");
             domain.ExistingTovars = GetAllProducts();
+            domain.Categories = domain.ExistingTovars.Select(x => x.CatLev[2]).Distinct().OrderBy(x => x).ToList();
 
             MainDomain = domain;
         }

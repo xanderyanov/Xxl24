@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System.Xml.Serialization;
 
-namespace XxlShop.Domain
+namespace XxlShop
 {
     public class Father
     {

@@ -1,6 +1,4 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel.DataAnnotations.Schema;
-using XxlShop.Domain;
 
 namespace XxlShop.Models
 {

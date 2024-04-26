@@ -1,6 +1,6 @@
 using System.Text;
+using XxlShop;
 using XxlShop.Controllers;
-using XxlShop.Domain;
 
 var Prov = CodePagesEncodingProvider.Instance;
 Encoding.RegisterProvider(Prov);
@@ -26,9 +26,13 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
 
-    //endpoints.MapControllerRoute("route1",
-    //   "Product/{id?}",
-    //   new { controller = "Product", action = "Index" });
+    endpoints.MapControllerRoute("product",
+       "Product/{id?}",
+       new { controller = "Product", action = "Index" });
+
+    endpoints.MapControllerRoute("catalog",
+       "Catalog/{id?}",
+       new { controller = "Catalog", action = "Index" });
 
     //endpoints.MapControllerRoute("Admin",
     //       "Admin/{action}/{id?}",
