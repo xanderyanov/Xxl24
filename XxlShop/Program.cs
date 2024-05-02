@@ -17,9 +17,9 @@ var app = builder.Build();
 
 //app.MapGet("/", () => "Hello World!");
 
-//app.UseStaticFiles();
+app.UseStaticFiles();
 
-//app.UseRouting();
+app.UseRouting();
 
 //app.UseAuthorization();
 
@@ -37,7 +37,7 @@ Configure(app);
 
 static void Configure(IApplicationBuilder app)
 {
-    app.UseStaticFiles();
+    //app.UseStaticFiles();
     //app.UseSession();
 
 
@@ -45,7 +45,7 @@ static void Configure(IApplicationBuilder app)
     context => Settings.AdminHostNameConstraint.Match(context),
     branch =>
     {
-        branch.UseRouting();
+        //branch.UseRouting();
 
         branch.UseEndpoints(endpoints =>
         {
@@ -71,7 +71,7 @@ static void Configure(IApplicationBuilder app)
         branch =>
         {
 
-            branch.UseRouting();
+            //branch.UseRouting();
 
             branch.UseEndpoints(endpoints =>
             {
