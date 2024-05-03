@@ -14,6 +14,20 @@ namespace XxlShop.Controllers
         //public TUser User { get; set; }
         public string UserName { get; set; }
 
+        private UrlPreset urlPreset;
+
+        public string SiteRoot { get; protected set; }
+
+        public UrlPreset UrlPreset
+        {
+            get { return urlPreset; }
+            protected set
+            {
+                urlPreset = value;
+                SiteRoot = urlPreset?.GetRoot();
+            }
+        }
+
     }
 
     public class XxlController : Controller

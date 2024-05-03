@@ -51,10 +51,10 @@ static void Configure(IApplicationBuilder app)
             {
 
                 endpoints.MapControllerRoute(
-                    name: "Default",
+                    name: "Update",
                     pattern: "Update/{action}/{id?}",
                     defaults: new { controller = nameof(UpdateController)[..^10], action = "Index" }
-                ).WithDisplayName("Update");
+                ).WithDisplayName("AdminUpdate");
 
                 endpoints.MapControllerRoute(
                     name: "Default",
