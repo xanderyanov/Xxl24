@@ -17,9 +17,9 @@ var app = builder.Build();
 
 //app.MapGet("/", () => "Hello World!");
 
-app.UseStaticFiles();
+//app.UseStaticFiles();
 
-app.UseRouting();
+//app.UseRouting();
 
 //app.UseAuthorization();
 
@@ -37,33 +37,33 @@ Configure(app);
 
 static void Configure(IApplicationBuilder app)
 {
-    //app.UseStaticFiles();
+    app.UseStaticFiles();
     //app.UseSession();
 
 
     app.MapWhen(
-    context => Settings.AdminHostNameConstraint.Match(context),
-    branch =>
-    {
-        //branch.UseRouting();
-
-        branch.UseEndpoints(endpoints =>
+        context => Settings.AdminHostNameConstraint.Match(context),
+        branch =>
         {
+            branch.UseRouting();
 
-            endpoints.MapControllerRoute(
-                name: "Default",
-                pattern: "Update/{action}/{id?}",
-                defaults: new { controller = nameof(UpdateController)[..^10], action = "Index" }
-            ).WithDisplayName("Update");
+            branch.UseEndpoints(endpoints =>
+            {
 
-            endpoints.MapControllerRoute(
-                name: "Default",
-                pattern: "{controller}/{action}/{id?}",
-                defaults: new {controller = nameof(AdminController)[..^10], action = "Index" }
-            ).WithDisplayName("AdminDefault");
+                endpoints.MapControllerRoute(
+                    name: "Default",
+                    pattern: "Update/{action}/{id?}",
+                    defaults: new { controller = nameof(UpdateController)[..^10], action = "Index" }
+                ).WithDisplayName("Update");
 
-        });
-    }
+                endpoints.MapControllerRoute(
+                    name: "Default",
+                    pattern: "",
+                    defaults: new {controller = nameof(AdminController)[..^10], action = "Index" }
+                ).WithDisplayName("AdminDefault");
+
+            });
+        }
     );
 
     app.MapWhen(
@@ -71,7 +71,7 @@ static void Configure(IApplicationBuilder app)
         branch =>
         {
 
-            //branch.UseRouting();
+            branch.UseRouting();
 
             branch.UseEndpoints(endpoints =>
             {
@@ -89,9 +89,11 @@ static void Configure(IApplicationBuilder app)
 
                 endpoints.MapControllerRoute(
                     name: "Default",
-                    pattern: "{controller}/{action}/{id?}",
+                    pattern: "",
                     defaults: new { controller = nameof(HomeController)[..^10], action = "Index" }
                 ).WithDisplayName("SiteDefault");
+
+                
 
             });
         }
