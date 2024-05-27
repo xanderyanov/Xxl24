@@ -13,6 +13,8 @@ namespace XxlShop.Controllers
 
             IEnumerable<Product> filteredProducts = Products.Where(x => x.FlagNew);
 
+            Bucket.Title = "Главная";
+
             return View(new ProductsListViewModel
             {
                 Products = filteredProducts
