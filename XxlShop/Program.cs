@@ -1,4 +1,6 @@
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using XxlShop;
 using XxlShop.Controllers;
 
@@ -8,6 +10,14 @@ Encoding.RegisterProvider(Prov);
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+
+///без этого в исходном коде страницы только символы вместо раусских букв
+HtmlEncoder DefaultHtmlEncoder = HtmlEncoder.Create(allowedRanges: new[] {
+    UnicodeRanges.All,
+});
+builder.Services.AddSingleton(DefaultHtmlEncoder);
+///
 
 Data.InitData(builder.Configuration);
 //Data.ImportCSV("tovar!.csv");
@@ -39,6 +49,8 @@ static void Configure(IApplicationBuilder app)
 {
     app.UseStaticFiles();
     //app.UseSession();
+
+
 
 
     app.MapWhen(
